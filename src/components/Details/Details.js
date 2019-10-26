@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import pet from '@frontendmasters/pet'
 import Carousel from '../Carousel'
 import ErrorBoundary from '../../utils/ErrorBoundary'
+import ThemeContext from '../../context/ThemeContext'
 
 class Details extends Component {
   state = {
@@ -33,7 +34,11 @@ class Details extends Component {
         <div>
           <h1>{name}</h1>
           <h2>{`${animal} - ${breed} - ${location}`}</h2>
-          <button>Adopt {name}</button>
+          <ThemeContext.Consumer>
+            {([theme]) => (
+              <button style={{ backgroundColor: theme }}>Adopt {name}</button>
+            )}
+          </ThemeContext.Consumer>
           <p>{description}</p>
         </div>
       </div>
